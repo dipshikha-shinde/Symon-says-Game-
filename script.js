@@ -6,12 +6,14 @@ let level = 0;
 let highScore = 0;
 
 let h2 = document.querySelector("h2");
+let startBtn = document.querySelector("#startBtn");
 
-// Start game on keypress
-document.addEventListener("keypress", function () {
+// Start game on Start button click
+startBtn.addEventListener("click", function () {
     if (!started) {
         console.log("Game started");
         started = true;
+        startBtn.style.display = "none";
         levelUp();
     }
 });
@@ -69,10 +71,11 @@ function checkAns(idx) {
             <b>Game Over!</b><br>
             Your score: <b>${level - 1}</b><br>
             Highest score: <b>${highScore}</b><br>
-            Press Any Key to Restart
+            Press Start to Restart
         `;
 
-        reset();  // only resets variables, not h2 text
+        startBtn.style.display = "inline-block"; // show the Start button again
+        reset();
     }
 }
 
@@ -97,5 +100,5 @@ function reset() {
     userSeq = [];
     started = false;
     level = 0;
-    // h2.innerText will stay showing the game over message
+    // h2.innerText stays with the game over message
 }
